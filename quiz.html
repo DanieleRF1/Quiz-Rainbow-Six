@@ -1,70 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="quiz.css">
-    <script src="quiz.js"></script> 
-    <title>Quiz R6</title>
+    <script src="quiz.js" defer></script> 
+    <title>Quiz Rainbow Six</title>
 </head>
 <body>
-    <main>
-      <section> 
-        <h1 id="titulo">Quiz para testar seus conhecimentos sobre o jogo</h1>
-        <p id="subtitulo">Veja se você realmente é um fã de Rainbow six, respondendo perguntas sobre o jogo, operadores e muito mais</p>
-      </section>  
-    </main>
     <section id="resultado" style="display: none;">
-    <h2>Resultado</h2>
-    <p id="textoResultado"></p>
-</section>
+        <h2>Resultado</h2>
+        <p id="textoResultado"></p>
+    </section>
+
     <!--Pergunta 1:-->
-    <section id="p1">
-        <h2>1. Qual desses operadores tem a habilidade de abrir paredes reforçadas?</h2>
-        <form>
-            <input type="radio" value="Ash" name="pergunta1">Ash<br>
-            <input type="radio" value="Grim" name="pergunta1">Grim<br>
-            <input type="radio" value="Ace" name="pergunta1">Ace<br>
-            <input type="radio" value="Bandit" name="pergunta1">Bandit<br><br>   
+    <div class="caixa">
+        <section id="p1">
+            <h2>1. Qual desses operadores tem a habilidade de abrir paredes reforçadas?</h2>
+            <div class="opcoes" id="ops1">
+                <button type="button" onclick="selecionarOpcao(this, 'pergunta1')">Ash</button>
+                <button type="button" onclick="selecionarOpcao(this, 'pergunta1')">Grim</button>
+                <button type="button" onclick="selecionarOpcao(this, 'pergunta1')">Ace</button>
+                <button type="button" onclick="selecionarOpcao(this, 'pergunta1')">Bandit</button>
+            </div>
+            <button class="btn" type="button" onclick="proximaPergunta()">Próxima</button>
+            <button class="btn" type="button" onclick="window.location.href='tela-inicial.html'">Voltar</button>
+        </section>
+    </div>
 
-        <button type="button" onclick="proximaPergunta()">Próxima</button>
-        </form>
-    </section>
     <!--Pergunta 2:-->
-    <section id="p2">
-        <h2>2. Qual desses operadores de ataque tem a habilidade de colocar câmeras?</h2>
-        <form>
-            <input type="radio" value="Valkyrie" name="pergunta2">Valkyrie<br>
-            <input type="radio" value="Flores" name="pergunta2">Flores<br>
-            <input type="radio" value="Brava" name="pergunta2">Brava<br>
-            <input type="radio" value="Zero" name="pergunta2">Zero<br><br>
+    <div class="caixa">
+        <section id="p2">
+            <h2>2. Qual desses operadores de ataque tem a habilidade de colocar câmeras?</h2>
+            <div class="opcoes" id="ops2">
+                <button type="button" onclick="selecionarOpcao(this, 'pergunta2')">Valkyrie</button>
+                <button type="button" onclick="selecionarOpcao(this, 'pergunta2')">Flores</button>
+                <button type="button" onclick="selecionarOpcao(this, 'pergunta2')">Brava</button>
+                <button type="button" onclick="selecionarOpcao(this, 'pergunta2')">Zero</button>
+            </div>
+            <button class="btn" type="button" onclick="proximaPergunta()">Próxima</button>
+            <button class="btn" type="button" onclick="voltarPergunta()">Voltar</button>
+        </section>
+    </div>
 
-        <button type="button" onclick="proximaPergunta()">Próxima</button>
-        </form>
-    </section>
     <!--Pergunta 3:-->
-    <section id="p3">
-        <h2>3. Qual operador(a) consegue detectar dispositivos eletrônicos em tempo real através de paredes?</h2>
-        <form>
-            <input type="radio" value="Pulse" name="pergunta3">Pulse<br>
-            <input type="radio" value="Solis" name="pergunta3">Solis<br>
-            <input type="radio" value="Solid Snake" name="pergunta3">Solid Snake<br>
-            <input type="radio" value="Iq" name="pergunta3">Iq<br><br>
-
-            <button type="button" onclick="proximaPergunta()">Próxima</button>
-        </form>
-    </section>
+    <div class="caixa">
+        <section id="p3">
+            <h2>3. Qual operador(a) consegue detectar dispositivos eletrônicos <br> em tempo real através de paredes?</h2>
+            <div class="opcoes" id="ops3">
+                <button type="button" onclick="selecionarOpcao(this, 'pergunta3')">Pulse</button>
+                <button type="button" onclick="selecionarOpcao(this, 'pergunta3')">Solis</button>
+                <button type="button" onclick="selecionarOpcao(this, 'pergunta3')">Solid Snake</button>
+                <button type="button" onclick="selecionarOpcao(this, 'pergunta3')">Iq</button>
+            </div>
+            <button class="btn"type="button" onclick="proximaPergunta()">Próxima</button>
+            <button class="btn" type="button" onclick="voltarPergunta()">Voltar</button>
+        </section>
+    </div>
 
     <!--Pergunta 4:-->
-    <section id="p4">
-        <h2>4. Qual operador é esse?</h2>
-        <img src="denari.avif">
-        <form>
-            <input type="text" placeholder="Digite a resposta" id="resposta4" name="pergunta4"><br><br>
-
-            <button type="button" onclick="proximaPergunta()">Próxima</button>
-        </form>
-    </section>
-    
+    <div class="caixa">
+        <section id="p4">
+            <h2>4. Qual operador é esse?</h2>
+            <div class="opcoes" id="ops4"></div>
+            <img src="denari.avif"><br><br>
+            <input type="text" placeholder="Digite a resposta" name="pergunta4"><br><br>
+            <button class="btn" type="button" onclick="proximaPergunta()">Próxima</button>
+            <button class="btn" type="button" onclick="voltarPergunta()">Voltar</button>
+        </section>
+    </div>
 </body>
 </html>
