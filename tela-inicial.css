@@ -1,0 +1,103 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0D1B28;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+}
+
+.container{
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.card{
+  width: 100%;
+  max-width: 450px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.banner{
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.conteudo{
+  padding: 30px;
+  text-align: center;
+}
+
+h1{
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.subtitulo{
+  color: #cfcfcf;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.btn-jogar{
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  background: #f5b400;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-jogar:hover{
+  transform: scale(1.03);
+  background: #ffd54a;
+}
+
+.ranks{
+  margin-top: 35px;
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.ranks h2{
+  margin-bottom: 15px;
+  font-size: 22px;
+}
+
+.rank-lista p{
+  margin: 10px 0;
+  color: #d9d9d9;
+}
+
+@media(max-width: 500px){
+
+  .conteudo{
+    padding: 20px;
+  }
+
+  h1{
+    font-size: 26px;
+  }
+
+}
