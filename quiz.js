@@ -8,52 +8,72 @@ let corretas = {
 };
 
 let respostasUsuario = {};
+let opcaoSelecionada = {}; 
+let perguntasRespondidas = {};
+
+function selecionarOpcao(btn, pergunta) { 
+    let botoes = btn.parentElement.querySelectorAll("button");
+    botoes.forEach(b => b.classList.remove("selecionada"));
+    btn.classList.add("selecionada");
+    opcaoSelecionada[pergunta] = btn.innerText;
+}
 
 function proximaPergunta() {
 
     let opcoes = document.getElementsByName("pergunta" + atual);
-
     let respostaSelecionada = null;
 
-    // 🔽 ADICIONADO: trata input text
     if (opcoes.length === 1 && opcoes[0].type === "text") {
         respostaSelecionada = opcoes[0].value.trim();
     }
 
-    for (let i = 0; i < opcoes.length; i++) {
-        if (opcoes[i].checked) {
-            respostaSelecionada = opcoes[i].value;
-            break;
-        }
+   
+    if (!respostaSelecionada) {
+        respostaSelecionada = opcaoSelecionada["pergunta" + atual] || null;
     }
 
     if (!respostaSelecionada) {
         alert("Responda antes de continuar!");
         return;
-    }
+ }
+ 
 
-    // salva resposta
-    respostasUsuario["pergunta" + atual] = respostaSelecionada;
+    // ✅ NOVO - feedback de certo/errado nos botões
+    let correta = corretas["pergunta" + atual];
+    let botoes = document.querySelectorAll("#ops" + atual + " button");
 
-    // troca de pergunta
-    document.getElementById("p" + atual).style.display = "none";
-    atual++;
+    botoes.forEach(btn => {
 
-    let prox = document.getElementById("p" + atual);
+    btn.disabled = true;
 
-    if (prox) {
-        prox.style.display = "block";
+    if (btn.innerText.toLowerCase() === correta.toLowerCase()) {
+        btn.classList.add("correta");
     } else {
-        mostrarResultado();
+        btn.classList.add("errada");
     }
+
+});
+
+    setTimeout(() => { // ✅ NOVO - delay para ver o feedback
+        respostasUsuario["pergunta" + atual] = respostaSelecionada;
+        perguntasRespondidas["pergunta" + atual] = true;
+
+        document.getElementById("p" + atual).style.display = "none";
+        atual++;
+
+        let prox = document.getElementById("p" + atual);
+        if (prox) {
+            prox.style.display = "block";
+        } else {
+            mostrarResultado();
+        }
+    }, 1000);
 }
 
-function mostrarResultado() {
+function mostrarResultado() { 
     let pontos = 0;
 
     for (let pergunta in corretas) {
-
-
         if (
             respostasUsuario[pergunta] &&
             respostasUsuario[pergunta].toLowerCase().trim() ===
@@ -64,16 +84,39 @@ function mostrarResultado() {
     }
 
     let total = Object.keys(corretas).length;
-
-    // monta mensagem
     let mensagem = "Você acertou " + pontos + " de " + total + " perguntas!";
 
-    // mostra na tela
     document.getElementById("textoResultado").innerText = mensagem;
-
     document.getElementById("resultado").style.display = "block";
+}
 
-    document.getElementById("titulo").style.display = "none";   
-    
-    document.getElementById("subtitulo").style.display = "none";
+
+
+function voltarPergunta() {
+
+    if (atual <= 1) return;
+
+    document.getElementById("p" + atual).style.display = "none";
+
+    atual--;
+
+    document.getElementById("p" + atual).style.display = "block";
+
+    // se já foi respondida, mantém bloqueado e visual
+    if (perguntasRespondidas["pergunta" + atual]) {
+
+        let correta = corretas["pergunta" + atual];
+        let botoes = document.querySelectorAll("#ops" + atual + " button");
+
+        botoes.forEach(btn => {
+
+            btn.disabled = true;
+
+            if (btn.innerText.toLowerCase() === correta.toLowerCase()) {
+                btn.classList.add("correta");
+            } else {
+                btn.classList.add("errada");
+            }
+        });
+    }
 }
